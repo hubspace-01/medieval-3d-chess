@@ -2,51 +2,67 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- `viewport-fit=cover` lets the hall fill a notched screen edge to edge AND
-         is what makes `env(safe-area-inset-*)` resolve to real pixels — without
-         it iOS reports every inset as 0 and the interface hides under the
-         cutout and the home bar. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>King's Gambit — Medieval 3D Chess</title>
-    <meta name="description" content="Cinematic 3D chess in a torch-lit castle hall. Play a computer opponent or a friend." />
+
+    <!-- Primary SEO Tags -->
+    <title>War Chess 3D — Play Free Browser 3D Chess Game Online</title>
+    <meta name="description" content="Play War Chess 3D online in your browser. Command animated 3D armies in cinematic chess battles. Play free 3D chess against computer or friends!" />
+    <meta name="keywords" content="war chess 3d, 3d chess game, play 3d chess, browser chess 3d, medieval chess" />
     <meta name="theme-color" content="#05060a" />
+    <link rel="canonical" href="https://warchess3d.com" />
 
-    <!-- Share card. X, Facebook, Discord, iMessage and Slack all read these from the
-         raw HTML — they never run the app — so the picture has to be a real static
-         file with an ABSOLUTE url. A relative `/banner.jpg` is silently dropped by
-         X's crawler, which is why the link used to unfurl as bare text.
-         Update `og:url` / `og:image` if the site moves to another domain. -->
-    <meta property="og:site_name" content="King's Gambit" />
-    <meta property="og:title" content="King's Gambit — Epic 3D Chess Battles" />
-    <meta property="og:description" content="Command your army. Outsmart your rival. Cinematic 3D chess in a torch-lit castle hall — play the engine or a friend." />
+    <!-- Open Graph / Social Media (Discord, Telegram, Facebook, VK) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://g9111r67kl6tq85g540sd-web.rork.live/" />
-    <meta property="og:image" content="https://g9111r67kl6tq85g540sd-web.rork.live/banner.jpg" />
-    <meta property="og:image:secure_url" content="https://g9111r67kl6tq85g540sd-web.rork.live/banner.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="900" />
-    <meta property="og:image:alt" content="Two 3D chess armies facing off across a glowing board in a castle hall" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://warchess3d.com" />
+    <meta property="og:title" content="War Chess 3D — Cinematic 3D Chess Game" />
+    <meta property="og:description" content="Command animated 3D armies on a marble chessboard right in your browser!" />
+    <meta property="og:image" content="https://warchess3d.com/og-preview.jpg" />
 
-    <!-- `summary_large_image` is what makes X show the full-width banner instead of
-         a thumbnail beside the text. -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="King's Gambit — Epic 3D Chess Battles" />
-    <meta name="twitter:description" content="Command your army. Outsmart your rival. Cinematic 3D chess in a torch-lit castle hall." />
-    <meta name="twitter:image" content="https://g9111r67kl6tq85g540sd-web.rork.live/banner.jpg" />
-    <meta name="twitter:image:alt" content="Two 3D chess armies facing off across a glowing board in a castle hall" />
+    <meta name="twitter:title" content="War Chess 3D — Play Free Browser 3D Chess Game" />
+    <meta name="twitter:description" content="Play 3D chess online with animated medieval armies!" />
+    <meta name="twitter:image" content="https://warchess3d.com/og-preview.jpg" />
 
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/icon.png" />
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "War Chess 3D",
+        "url": "https://warchess3d.com",
+        "image": "https://warchess3d.com/og-preview.jpg",
+        "description": "A cinematic, browser-based 3D chess game with animated medieval, Mesoamerican, and Napoleonic armies.",
+        "genre": ["Strategy", "Chess", "Board Game"],
+        "gamePlatform": ["Web Browser", "PC", "Mobile"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "War Chess 3D Team",
+          "email": "info@warchess3d.com"
+        }
+      }
+    </script>
   </head>
-
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
