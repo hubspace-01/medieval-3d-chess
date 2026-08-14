@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Privacy Policy — War Chess 3D</title>
+    <meta name="description" content="Privacy Policy and data processing terms for War Chess 3D online browser game." />
+    <meta name="theme-color" content="#05060a" />
+    <link rel="canonical" href="https://warchess3d.com/privacy.html" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Standalone static page (served from web/public/), mirroring the same
+      modal shell AboutPanel.tsx / SettingsPanel.tsx use: .mc-slate +
+      .mc-goldleaf card, .mc-icon-btn close, mc-scroll body, mc-rule
+      section breaks, small-caps section labels.
+
+      SCROLL FIX: the in-app panels scroll correctly because .mc-root is
+      `fixed inset-0` — a viewport-pinned ancestor with a DEFINITE height —
+      and every descendant's percentage height (max-h-full etc.) resolves
+      against that chain down to .mc-scroll. The first version of this
+      page gave <body> only `min-height: 100vh`, not `height`. A
+      percentage max-height against a parent whose height is `auto`
+      resolves to `none` per the CSS spec, so .mc-card never actually hit
+      a height limit — it just grew forever with the content, and
+      .mc-scroll (which needs to overflow to become scrollable) never
+      did. Nothing scrolled; the page just got taller than the screen.
+      Fixed below by giving <html>/<body> a real, definite height.
+    -->
+    <style>
+      :root {
+        --mc-safe-top: env(safe-area-inset-top, 0px);
+        --mc-safe-right: env(safe-area-inset-right, 0px);
+        --mc-safe-bottom: env(safe-area-inset-bottom, 0px);
+        --mc-safe-left: env(safe-area-inset-left, 0px);
+        --gold: #d8b163;
+        --gold-bright: #f6dfa5;
+        --gold-deep: #8a6522;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        /* Definite height, not min-height — this is what lets every
+           percentage-based max-height below actually resolve to a real
+           number instead of `none`. 100vh first as a safe fallback,
+           100dvh second (wins in browsers that support it) so a mobile
+           browser's address-bar show/hide doesn't clip the card. */
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+      }
+
+      body {
+        background: radial-gradient(circle at 50% 35%, #16171d 0%, #08090c 60%, #050507 100%);
+        color: #f2e6cf;
+        font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Same padding formula as .mc-modal-pad in medieval.css. */
+        padding: calc(1.5rem + var(--mc-safe-top)) calc(1.25rem + var(--mc-safe-right))
+          calc(1.5rem + var(--mc-safe-bottom)) calc(1.25rem + var(--mc-safe-left));
+      }
+
+      .mc-display {
+        font-family: "Cinzel", Georgia, serif;
+        letter-spacing: 0.06em;
+      }
+
+      /* Card shell — same two classes AboutPanel/SettingsPanel apply:
+         .mc-slate (dark panel) + .mc-goldleaf (animated gold border). */
+      .mc-card {
+        position: relative;
+        background: linear-gradient(165deg, rgba(26, 27, 33, 0.94), rgba(12, 13, 17, 0.96));
+        border: 1px solid rgba(216, 177, 99, 0.28);
+        border-radius: 6px;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 226, 170, 0.09);
+        backdrop-filter: blur(7px);
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 32rem; /* max-w-lg, matching AboutPanel/SettingsPanel */
+        /* Now resolves to a real number: 100% of body's definite,
+           padding-excluded content height. This is the line the whole
+           fix hinges on. */
+        max-height: 100%;
+        min-height: 0;
+        padding: 1.25rem; /* p-5 */
+        animation: mc-rise 460ms cubic-bezier(0.18, 1.2, 0.35, 1) both;
+      }
+
+      @media (min-width: 640px) {
+        .mc-card { padding: 1.5rem; } /* sm:p-6 */
+      }
+
+      @keyframes mc-rise {
+        from { opacity: 0; transform: translateY(26px) scale(0.97); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      .mc-card::before {
+        content: "";
+        position: absolute;
+        inset: -1.5px;
+        border-radius: inherit;
+        padding: 1.5px;
+        background: linear-gradient(
+          115deg,
+          rgba(138, 101, 34, 0.2) 0%,
+          var(--gold) 22%,
+          var(--gold-bright) 34%,
+          var(--gold-deep) 48%,
+          var(--gold) 68%,
+          rgba(138, 101, 34, 0.2) 100%
+        );
+        background-size: 260% 100%;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: mc-leaf 9s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes mc-leaf {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 260% 50%; }
+      }
+
+      /* Header row — mb-4 flex shrink-0 items-center justify-between. */
+      .mc-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+        margin-bottom: 1rem;
+      }
+
+      .mc-header-row h1 {
+        margin: 0;
+        font-family: "Cinzel", Georgia, serif;
+        font-size: 1.125rem; /* text-lg */
+        color: #f2e2bd;
+      }
+
+      /* .mc-btn.mc-icon-btn from medieval.css — same close control the
+         panels use, real X glyph instead of a typed × character. */
+      .mc-icon-btn {
+        display: grid;
+        place-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        border-radius: 3px;
+        border: 1px solid rgba(216, 177, 99, 0.45);
+        background: linear-gradient(180deg, #35302a 0%, #201d19 55%, #16130f 100%);
+        color: #f7ead0;
+        box-shadow: inset 0 1px 0 rgba(255, 226, 170, 0.22), inset 0 -8px 18px rgba(0, 0, 0, 0.45),
+          0 6px 18px rgba(0, 0, 0, 0.5);
+        transition: transform 140ms cubic-bezier(0.2, 1.4, 0.4, 1), box-shadow 160ms ease,
+          border-color 160ms ease, color 160ms ease;
+        text-decoration: none;
+        flex: none;
+      }
+
+      .mc-icon-btn:hover {
+        color: #fff6e2;
+        border-color: rgba(246, 223, 165, 0.85);
+        transform: translateY(-2px);
+        box-shadow: inset 0 1px 0 rgba(255, 240, 205, 0.3), 0 10px 26px rgba(0, 0, 0, 0.55),
+          0 0 22px rgba(216, 177, 99, 0.22);
+      }
+
+      .mc-icon-btn:active {
+        transform: translateY(1px) scale(0.985);
+      }
+
+      /* Scrollable body — mc-scroll mc-scroll-shade -mr-2 min-h-0
+         flex-auto overflow-y-auto pb-1 pr-2. flex:1 makes it absorb all
+         the space .mc-card's now-real max-height leaves after the fixed
+         header, and min-height:0 is what lets a flex child shrink below
+         its content size at all (the default is `auto`, which would
+         otherwise refuse to shrink and defeat the scroll again). */
+      .mc-scroll {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        margin-right: -0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.25rem;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(216, 177, 99, 0.55) transparent;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          transparent 0,
+          #000 12px,
+          #000 calc(100% - 16px),
+          transparent 100%
+        );
+        mask-image: linear-gradient(to bottom, transparent 0, #000 12px, #000 calc(100% - 16px), transparent 100%);
+      }
+
+      .mc-scroll::-webkit-scrollbar { width: 7px; }
+      .mc-scroll::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.32); border-radius: 4px; }
+      .mc-scroll::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, rgba(246, 223, 165, 0.85), rgba(138, 101, 34, 0.85));
+        border-radius: 4px;
+        border: 1px solid rgba(20, 18, 15, 0.6);
+      }
+
+      .mc-rule {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(216, 177, 99, 0.75), transparent);
+        margin: 1.25rem 0;
+        border: none;
+      }
+
+      /* Small-caps section labels — mc-display mb-2 text-[0.6rem]
+         tracking-[0.3em] text-[#a89268], the exact pattern used for
+         "Opponent", "Your banner", "Graphics", "Picture" etc. */
+      .mc-section-label {
+        font-family: "Cinzel", Georgia, serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #a89268;
+        margin: 0 0 0.5rem;
+      }
+
+      p, ul { margin: 0 0 0.5rem; font-size: 0.75rem; line-height: 1.6; color: #b7a88a; }
+      ul { padding-left: 1.1rem; }
+      li { margin-bottom: 0.2rem; }
+      li::marker { color: #8a6522; }
+
+      code {
+        background: rgba(216, 177, 99, 0.14);
+        border: 1px solid rgba(216, 177, 99, 0.25);
+        border-radius: 3px;
+        padding: 0.05rem 0.35rem;
+        font-size: 0.85em;
+        color: var(--gold-bright);
+      }
+
+      a { color: var(--gold-bright); text-decoration: underline; }
+      a:hover { color: #ffffff; }
+
+      .mc-meta { color: #7d6f57; font-size: 0.7rem; }
+      strong { color: #e3d2ad; }
+    </style>
+  </head>
+  <body>
+    <div class="mc-card">
+      <div class="mc-header-row">
+        <h1 class="mc-display">Privacy Policy</h1>
+        <a href="/" class="mc-icon-btn" title="Back to game" aria-label="Back to game">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </a>
+      </div>
+
+      <div class="mc-scroll">
+        <p class="mc-meta"><strong>Effective date:</strong> August 10, 2026</p>
+
+        <p>
+          Welcome to <strong>War Chess 3D</strong> (<a href="https://warchess3d.com">warchess3d.com</a>).
+          This Privacy Policy explains what information is processed when you play our
+          browser-based 3D chess game, and what choices you have about it.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">No account, no server-side profile</p>
+        <p>
+          War Chess 3D runs entirely in your browser. It does not require registration, an
+          email address, or any account, and we do not collect or store your name, postal
+          address, phone number, or payment details on any server we operate.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">What we store locally on your device</p>
+        <p>
+          The game uses your browser's <code>localStorage</code> to remember your preferences
+          between visits. Nothing in this list is transmitted to us — it stays on your device
+          unless you clear it yourself:
+        </p>
+        <ul>
+          <li><code>kg.armies</code> — the army skins you picked (Ivory Kingdom, Sun Empire, or Grande Armée) for each side.</li>
+          <li><code>kg.render</code> — your graphics quality preset, brightness, and safe-rendering toggle.</li>
+          <li><code>kg.table</code> — your camera seat-swing preference for two-player matches.</li>
+          <li><code>kg.cookie_consent</code> — the choice you made in the cookie banner ("Accept All" or "Essential Only").</li>
+        </ul>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">Device and performance signals</p>
+        <p>
+          To pick a graphics preset your device can actually render smoothly, the game reads
+          basic rendering capabilities in your browser — such as the GPU renderer string,
+          device memory, and measured frame rate. This runs entirely client-side to choose a
+          quality level (Low to Ultra); it is not sent to us and is not used to identify you.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">Analytics, tag management &amp; cookie consent</p>
+        <p>
+          We use <strong>Google Tag Manager</strong> to load analytics tags (such as Google
+          Analytics) on this site. In line with Google's Consent Mode, no analytics or
+          advertising cookie is set until you make a choice in the cookie banner shown on your
+          first visit:
+        </p>
+        <ul>
+          <li><strong>Essential Only</strong> — only the strictly necessary local storage above is used; analytics stays off.</li>
+          <li><strong>Accept All</strong> — analytics storage is enabled so we can see aggregate traffic and usage patterns (e.g. which battlegrounds or armies are popular). We do not currently run personalized advertising on this site; if that changes, this policy will be updated first and the same consent choice will govern it.</li>
+        </ul>
+        <p>
+          You can change your choice at any time from the cookie banner, or by clearing
+          <code>kg.cookie_consent</code> from your browser's local storage to see the banner again.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">Your rights (GDPR / CCPA)</p>
+        <p>
+          If you are in the European Economic Area, the UK, or California, you have the right
+          to access, correct, or request deletion of personal data, and to withdraw analytics
+          consent at any time. Because we hold no server-side account or profile tied to you,
+          the fastest way to exercise these rights is locally: clearing your browser's cookies
+          and local storage for this site removes every preference and consent choice described
+          above. California residents may also submit a <strong>"Do Not Sell or Share My
+          Personal Information"</strong> request using the same method or by contacting us
+          below; we do not sell personal information.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">Children's privacy</p>
+        <p>
+          War Chess 3D is not directed at children under 13, and we do not knowingly collect
+          personal information from them. Because the game requires no account or personal
+          details to play, no such information is knowingly gathered from any player.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">Changes to this policy</p>
+        <p>
+          We may update this Privacy Policy as the game evolves — for example, if we add a new
+          analytics or advertising provider. The "Effective date" above will always reflect the
+          latest revision; material changes affecting analytics or advertising will also be
+          reflected in the cookie banner's consent options.
+        </p>
+
+        <div class="mc-rule"></div>
+
+        <p class="mc-section-label">Contact</p>
+        <p>
+          Questions about this Privacy Policy can be sent to
+          <a href="mailto:info@warchess3d.com">info@warchess3d.com</a>.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
