@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Clapperboard, Crown, Swords, Settings as SettingsIcon, Users } from "lucide-react";
+import { Clapperboard, Crown, Swords, Settings as SettingsIcon, Users, BookOpen, Mail } from "lucide-react";
 
 import type { DemoOptions, Difficulty, Faction } from "../core/types";
 import { Crest } from "./Heraldry";
@@ -73,11 +73,11 @@ export function MainMenu({ onStart, onOpenSettings, muster, onMuster, attract, o
       <div className="mc-unfurl mc-menu-hero mb-6 shrink-0 text-center">
         <p className="mc-display text-[0.68rem] tracking-[0.55em] text-[#c8ab74]">Anno Domini MCDXCII</p>
         <h1 className="mc-display mc-title-glow mt-2 text-5xl font-bold text-[#f4e3bd] sm:text-6xl">
-          KING&apos;S GAMBIT
+          War Chess 3D 
         </h1>
         <div className="mc-rule mx-auto mt-3 w-64" />
         <p className="mt-3 text-sm italic text-[#c5b28d]">
-          {attract ? "An AI vs AI duel is under way — move to take the hall" : "Chess in the great hall of Aldermoor"}
+          {attract ? "An AI vs AI duel is under way — move to take the hall" : "Cinematic 3D Battles in Your Browser"}
         </p>
       </div>
 
@@ -287,6 +287,18 @@ export function MainMenu({ onStart, onOpenSettings, muster, onMuster, attract, o
           <SettingsIcon size={14} /> Settings
         </button>
         </div>
+      </div>
+
+      <div className="mt-4 shrink-0 flex flex-wrap items-center justify-center gap-2 text-[0.68rem] tracking-[0.15em] text-[#7d6f57]">
+        <span>WAR CHESS 3D © {new Date().getFullYear()}</span>
+        <span>·</span>
+        <a href="mailto:info@warchess3d.com" className="flex items-center gap-1 hover:text-[#c8ab74] transition-colors">
+          <Mail size={11} /> info@warchess3d.com
+        </a>
+        <span>·</span>
+        <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#c8ab74] transition-colors">
+          Privacy Policy
+        </a>
       </div>
 
       {/* The hall is driven differently by a finger than by a mouse, so the
